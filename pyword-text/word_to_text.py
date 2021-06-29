@@ -35,7 +35,18 @@ def read_all_text(file_path):
     return result
 
 
+def read_tables(file_path):
+    wordDoc = docx.Document(file_path)
+
+    for table in wordDoc.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                print(cell.text)
+
+
 if __name__ == '__main__':
-    paragraphs = get_paragraphs('file/demo.docx')
-    text = read_all_text('file/demo.docx')
-    print(text)
+    file = 'file/demo.docx'
+    # paragraphs = get_paragraphs(file)
+    # text = read_all_text(file)
+
+    read_tables(file)
