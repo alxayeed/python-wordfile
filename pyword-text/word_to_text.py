@@ -37,11 +37,16 @@ def read_all_text(file_path):
 
 def read_tables(file_path):
     wordDoc = docx.Document(file_path)
+    keyword = 'Low Vision'
+    print(
+        f'There are total {len(wordDoc.tables)} table(s) in the doc file\n')
 
     for table in wordDoc.tables:
         for row in table.rows:
-            for cell in row.cells:
-                print(cell.text)
+            # checks a word in first column of each row, if mathes, show the other columns(cells)
+            if keyword in row.cells[0].text:
+                for cell in row.cells:
+                    print(cell.text)
 
 
 if __name__ == '__main__':
